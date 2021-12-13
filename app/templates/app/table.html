@@ -1,0 +1,14 @@
+<tr style='background:#e9ecef'>
+    <td>{{forloop.counter}}</td>
+    <td><img src={{i.imaged}} class="bg-light d-inline-flex justify-content-center align-items-center align-top" style="height: 50px; width: 50px; border-radius: 500px;" alt='' /></td>
+    <td>{{i.categ}}</td>
+    <td>{{i.modeld}}</td>
+    <td>{{i.named}}</td>
+    <td>{{i.disd}}</td>
+    <td>{{i.sized}}</td>
+    <td>{{i.colord}}</td>
+    {% comment %} <td>
+        <a href='#' style='font-size: 10px' class='btn btn-success'>View</a>
+        <a style='font-size: 10px' class='btn btn-danger delete-btn' data-sid='{{i.id}}'>Delete</a>
+    </td> {% endcomment %}
+</tr>

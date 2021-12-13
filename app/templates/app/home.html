@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Admin Panel</title>    
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--jquery Links start-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    </head>
+    <body style="background-color:lightgray;">
+    <div class="col">
+        <div class="e-tabs mb-3 px-3">
+            <h4><p style="font-family: cursive; color:brown ; margin-left : 2%"><a href="{% url 'home' %}" class="mr-2">Hello Admin,</a> &#x1F44B</p></h4>
+            <form action='javascript:void(0)' method='POST'>{% csrf_token %}
+                <ul class="nav nav-tabs">
+                    <li class="nav-item" style='margin-left : 2%'><input type='text' class="form-control" name='Search'></li>
+                    <li class="nav-item" style='margin-left : 2%'><input type='submit' class="btn btn-secondary" value='Search'></li>
+                </ul>
+                <form>
+                </div>
+                
+        <h4><p class="mr-2" style="text-align:center;">All Booking </p></h4>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <div class='alert alert-{{ message.tags }}' role='alert'>
+                {{ message }}
+            </div>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="e-table">
+            <div class="table-responsive table-lg mt-3">
+                <div class="d-flex justify-content-center">
+                    <ul class=" mt-3 mb-0" id='nuun'>
+                        <p class="page-link">1 Out Of {{pages}}</p>
+                    </ul>
+                </div>
+                
+                <table border=1 align='center' class="table table-bordered" style ='width: 90%;'>
+                    <tr style='background:lightblue ; font-size:20px'>
+                        <th>No.</th>
+                        <th>Image</th>
+                        <th>Category</th>
+                        <th>Model</th>
+                        <th>Named</th>
+                        <th>Discription</th>
+                        <th>Size</th>
+                        <th>Color</th>
+                        {% comment %} <th>action</th> {% endcomment %}
+                    </tr>
+                    <hr>
+                    <tbody id='lists'>
+                        {% for i in first_page %}
+                            {% include 'app/table.html' %}
+                        {% endfor %}
+                    </tbody>
+                </table> 
+            </div>
+            
+            <!--Start Pagination Here-->
+            {% comment %} {% include 'app/page.html' %} {% endcomment %}
+            <nav aria-label="...">
+                <ul class="pagination justify-content-center">
+                    <li >
+                        <a class="page-link" id='prev-page' href='javascript:void(0)'>Previous</a>
+                    </li>
+                </ul>
+            </nav>
+            <!--End Pagination-->
+
+    </div>
+</form>
+</body>
+<style type="text/css">
+    body {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        background: #f8f8f8
+    }
+</style>
+
+<!--Start jquery or Link the Query-->
+<script>
+    {% include 'app/ajax.js' %}
+</script>
+<!--End jquery or Link the Query-->
+</html>

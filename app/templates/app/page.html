@@ -1,0 +1,58 @@
+<div class="prev_next">
+    <div class="pages">
+        <ul class="pagination justify-content-center ajax-pages">
+            <li class="page-item">
+                {% if page.has_previous %}
+                <a class="next btn btn-info pagebtn" id='pagebtn' href="javascript:void(0)" data={{page.previous_page_number}}>←<span class="a-letter-space"></span><span class="a-letter-space"></span>Previous</a>
+                {% else %}
+                <li class="page-item">
+                    <a class="next btn btn-info disabled" href="javascript:void(0)" tabindex="-1">←<span class="a-letter-space"></span><span class="a-letter-space"></span>Previous</a>
+                </li>
+                {% endif %}
+            </li>
+            
+            <li>&#160&#160</li>
+            {% if page.paginator.num_pages != 3 %}
+                {% if page.number >= 3 %}
+                {% comment %} <li class="page-item"><a class="page-link" href="?page=1">&laquo;</a></li> {% endcomment %}
+                    <li class="page-item"><a class="page-link pagebtn" id='pagebtn' href="javascript:void(0)" data=1>1</a></li>
+                {% endif %}
+            {% endif %}
+            
+            {% if page.number >= 5 %}
+            <li>&#160  &#x2026  &#160</li>
+            {% endif %}
+            
+            {% if page.number == 4 %}
+            <li>&#160&#160</li>
+            <li class="page-item"><a class="page-link pagebtn" id='pagebtn' href="javascript:void(0)" data=2>2</a></li>
+            {% endif %}
+            
+            {% for pg in page_range %}
+            {% if page.number == pg %}
+            <li>&#160&#160</li>
+            <li class="page-item active"><a href="javascript:void(0)" class="page-link pagebtn" data={{pg}}>{{pg}}</a></li>
+            {% else %}
+            <li>&#160&#160</li>
+            <li class="page-item"><a href="javascript:void(0)" class="page-link pagebtn" id='pagebtn' data={{pg}}>{{pg}}</a></li>
+            {% endif %}
+            {% endfor %}
+
+            {% if page.number < start_end %}
+            <li>&#160  &#x2026  &#160</li>
+            <li class="page-link">{{page.paginator.num_pages}}</li>
+            {% endif %}
+            
+            <li>&#160&#160</li>
+            <li class="page-item">
+                {% if page.has_next %}
+                <a class="next btn btn-info pagebtn" id='pagebtn' href='javascript:void(0)' data={{page.next_page_number}}>Next</a>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="next btn btn-info disabled" href="javascript:void(0)" tabindex="+1">Next<span class="a-letter-space"></span><span class="a-letter-space"></span>→</a>
+                </li>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</div>
